@@ -1,0 +1,16 @@
+.notify{
+    margin: 0px;
+    padding: 1vh;
+    position: fixed;
+    left: 2vh;
+    bottom: 2vh;
+    display: none;
+}
+.success{
+    display: none;
+    background-color: rgba(12, 201, 151, 0.446);
+}
+.fail{
+    display: none;
+    background-color: rgba(255, 0, 0, 0.446);
+}

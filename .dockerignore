@@ -1,0 +1,6 @@
+*/.env*
+*.git*
+*/*.git*
+*/*.md
+*/**node_modules
+*/frontend

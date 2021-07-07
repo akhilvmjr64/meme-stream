@@ -1,0 +1,17 @@
+.add{
+    text-decoration: none;
+    text-align: center;
+    padding:0px;
+    background-color: #282c34;
+    position: fixed;
+    color:white;
+    bottom: 10pt;
+    right: 10pt;
+    font-size: 6vh;
+    font-weight: bolder;
+    border-radius: 4vh;
+    width: 7.5vh;
+    height: 7.5vh;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.522);
+    border: none;
+  }

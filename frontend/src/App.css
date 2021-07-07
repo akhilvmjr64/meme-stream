@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+.title{
+  padding: 10pt;
+  font-size: 25pt;
+}
+.nav{
+  background-color: #282c34;
+  color: white;
+}

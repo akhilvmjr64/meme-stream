@@ -1,0 +1,48 @@
+body{
+    text-align: center;
+}
+.output{
+    display: none;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    margin: auto;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+}
+form{
+    height: fit-content;
+    background-color: white;
+    border: solid 1px grey;
+    margin: auto;
+    border-radius: 2vh;
+    width: fit-content;
+    padding: 2vh;
+    text-align: center;
+}
+form > p{
+    padding: 0px;
+    text-align: left;
+}
+form > input{
+    margin: 1vh 0pt;
+    padding: 1vh 1vh;
+    border: solid 0.5px grey;
+}
+form > input[type="text"],form >input[type="url"]{
+    width: 100%;
+}
+.output{
+    position:fixed;
+    display: none;
+}
+.form > h1{
+    padding: 5vh;
+}
+form > *{
+    margin: 1vh 0;
+}

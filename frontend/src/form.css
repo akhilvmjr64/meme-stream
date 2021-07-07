@@ -1,0 +1,29 @@
+body{
+    text-align: center;
+}
+.output{
+    position:fixed;
+    display: none;
+}
+.form{
+    margin: auto;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+}
+.form > h1{
+    padding: 5vh;
+}
+#form{
+    border-radius: 5pt;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+}
+form > *{
+    margin: 10pt 0pt;
+    padding: 3pt 6pt;
+}
+form > input{
+    border: solid 0.5px grey;
+}

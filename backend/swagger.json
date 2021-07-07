@@ -1,0 +1,265 @@
+{
+    "swagger": "2.0",
+    "info": {
+            "version": "1.0.0",
+            "title": "Meme Stream Backend",
+            "description": "Meme Stream is an application that displays the memes that are put in it. You can find the publicly deployed frontend [here](https://memes-stream.herokuapp.com/) and backend [here](https://memesstream.herokuapp.com/)"
+        },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "tags": [
+                {
+                    "name": "Welcome page",
+                    "description": "Welcome page for the backend"
+                },
+                {
+                    "name": "memes",
+                    "description": "This is used for fetching the memes on frontend, adding new memes and changing an existing meme"
+                }
+        ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                    "tags": [
+                            "Welcome page"
+                        ],
+                    "summary": "Home page",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    }
+                }
+            },
+        "/memes": {
+            "get": {
+                    "tags": [
+                        "memes"
+                        ],
+                    "summary": "Get all the memes from database",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                    "$ref": "#/definitions/memes"
+                            }
+                        }
+                    }
+                },
+            "post": {
+                    "consumes":[
+                        "application/x-www-form-urlencoded",
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "name",
+                            "in": "formData",
+                            "required": true,
+                            "description": "Name of the author",
+                            "type": "string"
+                        },
+                        {
+                            "name": "caption",
+                            "in": "formData",
+                            "required": true,
+                            "description": "Caption for new meme",
+                            "type": "string"
+                        },
+                        {
+                            "name": "url",
+                            "in": "formData",
+                            "required": true,
+                            "description": "URL for new meme",
+                            "type": "string"
+                        }
+                    ],
+                    "tags": [
+                        "memes"
+                        ],
+                    "produces": [
+                        "application/json",
+                        "text/html"
+                    ],
+                    "summary": "Posts a meme into the database",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/post"
+                            }
+                        },
+                        "400": {
+                            "description": "Bad Request required fields are empty",
+                            "schema":{
+                                "type":"string",
+                                "example": "Bad request name can't be empty"
+                            }
+                        },
+                        "500": {
+                            "description": "Error in database operation",
+                            "schema":{
+                                "type":"string",
+                                "example": "Error in database operation"
+                            }
+                        }
+                    }
+            }
+            },
+        "/memes/{id}": {
+
+            "get": {
+                    "parameters":[
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "required": true,
+                            "description": "ID of meme that you want to find",
+                            "type": "integer"
+                        }
+                    ],
+                    "tags": [
+                        "memes"
+                        ],
+                    "summary": "Gets the meme with the given meme id",
+                    "produces": [
+                        "application/json",
+                        "text/html"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                    "$ref": "#/definitions/meme"
+                            }
+                        },
+                        "404": {
+                            "description": "Bad Request no such Meme ID",
+                            "schema":{
+                                "type":"string",
+                                "example": "No such meme ID"
+                            }
+                        }
+                    }
+                },
+            "patch": {
+                    "consumes":[
+                        "application/x-www-form-urlencoded",
+                        "application/json"
+                    ],
+                    "produces":[
+                        "text/html"
+                    ],
+                    "parameters":[
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "required": true,
+                            "description": "ID of meme that you want to find",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "caption",
+                            "in": "formData",
+                            "description": "Caption for new meme",
+                            "type": "string"
+                        },
+                        {
+                            "name": "url",
+                            "in": "formData",
+                            "description": "URL for new meme",
+                            "type": "string"
+                        }
+                    ],
+                    "tags": [
+                        "memes"
+                        ],
+                    "summary": "Changes the caption or the url or both for a given meme id",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema":{
+                                "type":"string",
+                                "example": "Successfully changed!"
+                            }
+                        },
+                        "400": {
+                            "description": "Bad Request required fields are empty",
+                            "schema":{
+                                "type":"string",
+                                "example": "Bad request caption or url must be specified"
+                            }
+                        },
+                        "404": {
+                            "description": "Bad request no such meme ID",
+                            "schema":{
+                                "type":"string",
+                                "example": "No such meme ID"
+                            }
+                        },
+                        "500": {
+                            "description": "Error in database operation",
+                            "schema":{
+                                "type":"string",
+                                "example": "Error in database operation"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+         "definitions": {
+            "post": {
+                "properties":{
+                    "id": {
+                        "type": "integer",
+                        "example": 0
+                    }
+                }
+            },
+            "meme": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "uniqueItems": true,
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Akhil"
+                    },
+                    "caption": {
+                        "type": "string",
+                        "example": "This is a meme"
+                    },
+                    "url": {
+                        "type": "string",
+                        "example": "https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg"
+                    }
+                }
+            },
+            "memes": {
+                "type": "array",
+                "items":{
+                    "$ref": "#/definitions/meme"
+                },
+                "example":[
+                    {
+                        "id": 1,       
+                        "name": "MS Dhoni",
+                        "url": "https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg",
+                        "caption": "Meme for my place"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Viral Kohli",
+                        "url": "https://images.pexels.com/photos/1078983/pexels-photo-1078983.jpeg",
+                        "caption": "Another home meme"
+                    }
+                ]
+            }
+        }
+}
